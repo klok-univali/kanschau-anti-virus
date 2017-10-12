@@ -1,9 +1,10 @@
 class Arquivo(object):
 
-    def __init__(self,nome="",diretorio="",hash=""):
+    def __init__(self,nome="",diretorio="",hash="",status=False):
         self.__nome = nome
         self.__diretorio = diretorio
         self.__hash = hash
+        self.__status = status
 
     def obterNome(self):
         return self.__nome
@@ -22,3 +23,9 @@ class Arquivo(object):
 
     def definirHash(self,hash):
         self.__hash = hash
+
+    def obterStatus(self):
+        return self.__status
+
+    def definirStatus(self,status):
+        self.__status=status
