@@ -1,10 +1,21 @@
 import os
+from persistencia.Serializacao import Serializacao
+from persistencia.Armazenamento import Armazenamento
 
 class Quarentena(object):
 
     def __init__(self):
-        self.__arquivosQuarentena = []
-        self.__arquivosIgnorados = []
+
+        if os.path.exists("bases/Base_Quarentena"):
+            self.__arquivosQuarentena = Serializacao.recuperarSerializado(Armazenamento.recuperarObjetoSerializao("bases/Base_Quarentena"))
+        else:
+            self.__arquivosQuarentena = []
+
+        if os.path.exists("bases/Base_Ignorados"):
+            self.__arquivosIgnorados = Serializacao.recuperarSerializado(Armazenamento.recuperarObjetoSerializao("bases/Base_Ignorados"))
+
+        else:
+            self.__arquivosIgnorados = []
 
     def obterArquivosQuarentena(self):
         return self.__arquivosQuarentena

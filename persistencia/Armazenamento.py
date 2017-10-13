@@ -14,4 +14,4 @@ class Armazenamento():
 
         arquivoAberto = open(arquivo,'rb')
 
-        return arquivoAberto.readline()
+        return arquivoAberto.read()
