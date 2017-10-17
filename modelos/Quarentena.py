@@ -47,6 +47,7 @@ class Quarentena(object):
             elif(acao == "excluir"):
                 os.system("rm -f " + item.obterDiretorio()+item.obterNome())
             elif(acao == "ignorar"):
+                item.definirStatus(False)
                 self.__arquivosIgnorados.append(item)
 
         self.__arquivosQuarentena=listaAtualizadaQuarentena
@@ -57,7 +58,7 @@ class Quarentena(object):
 
         for item in self.__arquivosIgnorados:
 
-            if item.obterStatus():
+            if not item.obterStatus():
                 listaAtualizadaIgnorados.append(item)
 
         self.__arquivosIgnorados = listaAtualizadaIgnorados
