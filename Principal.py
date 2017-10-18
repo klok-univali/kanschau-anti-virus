@@ -10,7 +10,7 @@ from modelos.Quarentena import Quarentena
 varredura = Varredura()
 quarentena = Quarentena()
 
-varredura.capturarArquivos("/home/maykon/Downloads/")
+varredura.capturarArquivos("/home/srfr33dy/Documentos/")
 
 analise = Analise(varredura.obterArquivosCapturados(),quarentena)
 
