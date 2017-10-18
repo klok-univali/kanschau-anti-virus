@@ -22,7 +22,7 @@ from layout.layout import Ui_Kanschau
 #
 #     print(arquivo.obterNome())
 
-#  print(os.system("echo $HOME"))
+#  print(os.system("echo $HOME"))   ISSO PEGA O /HOME/USUARIO
 
 
 app = QApplication([])
