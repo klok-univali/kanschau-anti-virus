@@ -205,6 +205,7 @@ class Ui_Kanschau(object):
             self.lista_arq_ignorados.addItem(item)
 
     def iniVerificacaoAvancada(self):
+        self.varredura.limparDados()
         self.varredura.capturarArquivos(self.txtHome + self.lineEdit.displayText())
         numTotal = self.varredura.obterNumeroLido()
         numAtual = 1
@@ -220,6 +221,7 @@ class Ui_Kanschau(object):
         self.addItemQuarentena()
 
     def iniVerificacaoCompleta(self):
+        self.varredura.limparDados()
         self.varredura.capturarArquivos(self.txtHome)
         numTotal = self.varredura.obterNumeroLido()
         numAtual = 1
