@@ -1,4 +1,3 @@
-import hashlib
 import os
 from modelos.Arquivo import Arquivo
 
@@ -7,23 +6,24 @@ class Analise():
     def __init__(self, listaArquivos,quarentena):
         baseVirus = open("bases/Base_Virus",'r')
 
-        hash = hashlib.md5()
-
         for arquivo in listaArquivos:
-            file = open(arquivo)
-            hash.update(file.read().encode())
-            #print(hash.hexdigest())
+            #print(arquivo)
+
+            pipe = os.popen("md5sum -b " + arquivo + "|cut -f1 -d\' \'")
+            hash = pipe.read().replace('\n','')
+            hash = hash.replace(")","\)")
+            pipe.close()
+
             if self.itemQuarentena(hash,quarentena.obterArquivosQuarentena()) or self.itemIgnorado(hash,quarentena.obterArquivosIgnorados()):
                 continue
 
             for hashVirus in baseVirus.readlines():
-                #print(arquivo)
 
-                if hash.hexdigest() in hashVirus.replace('\n',''):
+                if hash in hashVirus.replace('\n',''):
                     objetoArquivo = Arquivo()
                     objetoArquivo.definirNome(os.path.basename(arquivo))
                     objetoArquivo.definirDiretorio(os.path.dirname(arquivo)+'/')
-                    objetoArquivo.definirHash(hash.hexdigest())
+                    objetoArquivo.definirHash(hash)
                     quarentena.adicionarArquivoQuarentena(objetoArquivo)
 
             baseVirus.seek(0,0)
@@ -32,7 +32,7 @@ class Analise():
 
         for arquivo in quarentena:
 
-            if arquivo.obterHash() == hash.hexdigest():
+            if arquivo.obterHash() == hash:
                 return True
 
         return False
@@ -41,7 +41,7 @@ class Analise():
 
         for arquivo in ignorados:
 
-            if arquivo.obterHash() == hash.hexdigest():
+            if arquivo.obterHash() == hash:
                 return True
 
         return False
