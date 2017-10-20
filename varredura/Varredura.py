@@ -7,7 +7,6 @@ class Varredura(object):
         self.__numeroLido = 0
 
     def capturarArquivos(self,diretorio):
-       self.limparDados()
        itens = os.listdir(os.path.expanduser(diretorio))
        for item in itens:
            if(os.path.isfile(diretorio + item)):

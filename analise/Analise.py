@@ -7,11 +7,9 @@ class Analise():
         baseVirus = open("bases/Base_Virus",'r')
 
         for arquivo in listaArquivos:
-            #print(arquivo)
 
             pipe = os.popen("md5sum -b " + arquivo + "|cut -f1 -d\' \'")
             hash = pipe.read().replace('\n','')
-            hash = hash.replace(")","\)")
             pipe.close()
 
             if self.itemQuarentena(hash,quarentena.obterArquivosQuarentena()) or self.itemIgnorado(hash,quarentena.obterArquivosIgnorados()):

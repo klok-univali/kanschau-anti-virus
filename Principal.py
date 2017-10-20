@@ -34,6 +34,7 @@ if __name__ == '__main__':
         opcao = input("Selecione a opção desejada: ")
 
         if(opcao == "1"):
+            varredura.limparDados()
             print("Realizando varredura completa do sistema.....")
             varredura.capturarArquivos(home)
             print("Número de arquivos varridos: " + str(len(varredura.obterArquivosCapturados())))
@@ -42,6 +43,7 @@ if __name__ == '__main__':
             print("Varredura e Análise finalizadas, para verificar os arquivos em quarentena acessar a opção 3 do MENU "
                   "ou opção 4 para arquivos ignorados.")
         elif(opcao == "2"):
+            varredura.limparDados()
             diretorio = input("Insira o caminho da pasta: " + home)
 
             if(os.path.isdir(home+diretorio)):
