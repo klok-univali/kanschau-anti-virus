@@ -189,6 +189,9 @@ class Ui_Kanschau(object):
         self.tabWidget.setCurrentIndex(2)
 
     def addItemQuarentena(self):
+
+        self.lista_arq_quarentena.clear()
+
         for arquivo in self.quarentena.obterArquivosQuarentena():
             item = QtWidgets.QListWidgetItem()
             item.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
@@ -197,6 +200,9 @@ class Ui_Kanschau(object):
             self.lista_arq_quarentena.addItem(item)
 
     def addItemIgnorado(self):
+
+        self.lista_arq_ignorados.clear()
+
         for arquivo in self.quarentena.obterArquivosIgnorados():
             item = QtWidgets.QListWidgetItem()
             item.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
