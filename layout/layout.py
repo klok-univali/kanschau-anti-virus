@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from analise.Analise import Analise
+from persistencia.Armazenamento import Armazenamento
+from persistencia.Serializacao import Serializacao
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -225,6 +227,10 @@ class Ui_Kanschau(object):
 
         self.lcdNumber_2.setProperty("intValue", len(self.quarentena.obterArquivosQuarentena()))
         self.addItemQuarentena()
+
+        Armazenamento.gravarObjetoSerializado("bases/Base_Quarentena",Serializacao.serializar(self.quarentena.obterArquivosQuarentena()))
+        Armazenamento.gravarObjetoSerializado("bases/Base_Ignorados",Serializacao.serializar(self.quarentena.obterArquivosIgnorados()))
+
 
     def iniVerificacaoCompleta(self):
         self.varredura.limparDados()

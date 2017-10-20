@@ -11,6 +11,7 @@ if __name__ == '__main__':
 
     varredura = Varredura()
     quarentena = Quarentena()
+    analise = Analise()
 
     pipe = os.popen('echo ${HOME}/')
     home = pipe.read().replace('\n','')
@@ -39,7 +40,11 @@ if __name__ == '__main__':
             varredura.capturarArquivos(home)
             print("Número de arquivos varridos: " + str(len(varredura.obterArquivosCapturados())))
             print("Realizando análise dos arquivos.....")
-            Analise(varredura.obterArquivosCapturados(),quarentena)
+
+            for arquivo in varredura.obterArquivosCapturados():
+
+                analise.analisar(arquivo,quarentena)
+
             print("Varredura e Análise finalizadas, para verificar os arquivos em quarentena acessar a opção 3 do MENU "
                   "ou opção 4 para arquivos ignorados.")
         elif(opcao == "2"):
@@ -50,7 +55,10 @@ if __name__ == '__main__':
                 print("Realizando a varredura do diretório " + home+diretorio + ".....")
                 varredura.capturarArquivos(home+diretorio)
                 print("Número de arquivos varridos: " + str(len(varredura.obterArquivosCapturados())))
-                Analise(varredura.obterArquivosCapturados(), quarentena)
+
+                for arquivo in varredura.obterArquivosCapturados():
+                    analise.analisar(arquivo, quarentena)
+
                 print("Varredura e Análise finalizadas, para verificar os arquivos em quarentena acessar a opção 3 do MENU ou opção 4"
                     "para arquivos ignorados.")
             else:
